@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8"utf-8"/>
+        <title>RUANJIA.COM</title>
+        <link rel="shortcut icon" href="/res/favicon.png" type="image/x-icon" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0">
+<link rel="stylesheet" href="../res/style_v2.css-v=20180712-ver2.css" tppabs="http://www.ruanjia.com/res/style_v2.css?v=20180712-ver2">
+<script src="../res/jquery.min.js" tppabs="http://www.ruanjia.com/res/jquery.min.js"></script>    </head>
+    <body>
+                <div class="wp work1">
+        <div class="frame">
+            <div class="bigimg"><img id="workimg" src="../img/1254054340.jpg" tppabs="http://www.ruanjia.com/img/1254054340.jpg" alt="战士"></div>
+            <div class="title">
+                <div class="worktitle">战士</div>
+            </div>            
+            <div class="info">版权天晴数码所有</div>
+        </div>
+        </div>
+           
+        <script>
+            function setWorkImg(){
+                var imgWidth = '640';
+                var imgHeight = '901';
+                var roi = imgWidth / imgHeight;
+                var bodyWidth = document.documentElement.clientWidth;
+
+                if(bodyWidth >= imgWidth){
+                    $(".title").css({
+                        width:imgWidth
+                    });
+                    $("#workimg").css({
+                        width:imgWidth,
+                        height:imgHeight
+                    });
+                }else{
+                    $(".title").css({
+                        width:'90%'
+                    });                        
+                    $("#workimg").css({
+                        width:bodyWidth,
+                        height: bodyWidth / roi
+                    });                    
+                }                    
+            }
+
+
+            //一个插件
+            (function($, window, document,undefined) {
+
+                var workNav = function(ele, opt) {
+                    this.$element = ele,
+                    this.defaults = {
+                        base:'',
+                        prev:'',
+                        nav:'',
+                        next:''
+                    },
+                    this.options = $.extend({}, this.defaults, opt)
+                    this.init();
+                    this.event();
+                }
+
+                workNav.prototype = {
+                    init: function() {
+                        var navNode = '';
+                        if(this.options.prev){
+                            navNode += '<div class="left"></div>';
+                        }
+                        
+                        navNode += '<div class="middle"></div>';
+                        
+                        if(this.options.next){
+                            navNode += '<div class="right"></div>';
+                        }
+                        this.$element
+                            .wrap("<div class='js_work_nav'></div>")
+                            .parent()
+                            .append($(navNode))
+                    },
+                    event:function(){
+                        var _this = this;
+                        var workNavBox = this.$element.parents('.js_work_nav');
+                        if(this.options.prev){
+                            workNavBox.find('.left').off('click').on('click', function(e){
+                                window.location.href = 'http://www.ruanjia.com/work/' + _this.options.prev;
+                            });
+                        }
+
+                        workNavBox.find('.middle').off('click').on('click', function(e){
+                            window.parent.closePopWork();
+                            // window.location.href = '../index.htm'/*tpa=http://www.ruanjia.com/*/ + _this.options.nav;
+                        });                            
+
+                        if(this.options.next){
+                            workNavBox.find('.right').off('click').on('click', function(e){
+                                window.location.href = 'http://www.ruanjia.com/work/' + _this.options.next;
+                            });                            
+                        }                        
+                    }
+                }
+
+
+                $.fn.imgWorkNav = function(options) {
+                     //调用其方法
+                    return new workNav(this, options);
+                }
+            })(jQuery, window, document);        
+
+
+            $(function(){
+                setWorkImg();  
+                $('#workimg').imgWorkNav({
+                    base:'/work/',
+                    prev:'404',
+                    nav:'sketch',
+                    next:'374',
+                });
+                 
+            });
+
+            $(window).resize(function(){
+                setWorkImg()
+            });
+        </script>
+
+    </body>
+</html>
+
