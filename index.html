@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUANJIA.COM</title>
+    <!-- 网站的 Favicon 图标 -->
     <link rel="shortcut icon" href="https://www.ruanjia.com/res/favicon.png" type="image/x-icon">
+    <!-- 链接到外部 CSS 文件 -->
     <link rel="stylesheet" href="styles.css">
+    <!-- 从 CDN 加载的 jQuery 库 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
+        /* 新框架部分的样式 */
         .frame-new {
             text-align: center;
         }
         .frame-new .bigimg {
             margin: 0 auto;
         }
+        /* 设置大图的默认样式 */
         .bigimg img {
             width: 100%;
             height: auto;
         }
+        /* 设置标题图片的样式 */
         .title_pic img {
             width: 135px;
             height: 92px;
@@ -25,6 +31,7 @@
     </style>
 </head>
 <body>
+    <!-- 导航栏部分 -->
     <nav class="nav_v1 clearfix">
         <ul>
             <li><a href="https://www.ruanjia.com/new"><span>NEW</span></a></li>
@@ -36,40 +43,50 @@
         </ul>
     </nav>
 
+    <!-- 主内容部分 -->
     <main class="wp">
         <section class="frame-new">
+            <!-- 大图部分 -->
             <div class="bigimg">
-                <img src="./2.jpg" alt="Big Image">
+                <img src="./2.jpg" alt="大图">
             </div>
+            <!-- 标题图片部分 -->
             <div class="title_pic">
-                <img src="./3.jpg" alt="Title Picture">
+                <img src="./3.jpg" alt="标题图片">
             </div>
         </section>
     </main>
     
+    <!-- 页脚部分 -->
     <footer class="footer clearfix">
-        <img src="./copy.png" alt="Footer Image">
+        <img src="./copy.png" alt="页脚图片">
     </footer>
 
+    <!-- JavaScript 代码用于动态调整图片大小 -->
     <script>
         $(document).ready(function() {
+            // 当文档准备就绪时，调用函数设置图片大小
             setWorkImg();
             setWorkTitle();
         });
 
         $(window).resize(function() {
+            // 当窗口大小改变时，调用函数调整图片大小
             setWorkImg();
             setWorkTitle();
         });
 
+        // 根据窗口宽度设置大图的大小
         function setWorkImg() {
-            var bodyWidth = document.body.offsetWidth;
+            var bodyWidth = document.body.offsetWidth; // 获取当前窗口宽度
             if (bodyWidth < 4048) {
+                // 如果窗口宽度小于图片宽度，设置图片为全宽度
                 $('.bigimg img').css({
                     width: '100%',
                     height: 'auto'
                 });
             } else {
+                // 否则，设置图片为原始尺寸
                 $('.bigimg img').css({
                     width: '4048px',
                     height: '1608px'
@@ -77,14 +94,17 @@
             }
         }
 
+        // 根据窗口宽度设置标题图片的大小
         function setWorkTitle() {
-            var bodyWidth = document.body.offsetWidth;
+            var bodyWidth = document.body.offsetWidth; // 获取当前窗口宽度
             if (bodyWidth < 135) {
+                // 如果窗口宽度小于标题图片宽度，将图片大小缩小为 50%
                 $('.title_pic img').css({
                     width: '50%',
                     height: '50%'
                 });
             } else {
+                // 否则，设置标题图片为原始尺寸
                 $('.title_pic img').css({
                     width: '135px',
                     height: '92px'
